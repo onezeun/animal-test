@@ -4,20 +4,11 @@
       <div class="progressBar" :style="pBarSize">
         <div class="innerBar" :style="progress"></div>
       </div>
-      <div
-        class="step"
-        v-for="(step, i) in steps"
-        :key="i"
-        :class="{
-          done: step.number < currentStep,
-          current: step.number === currentStep,
-        }"
-      >
-        <div
-          class="step-number"
-          :id="'step-' + step.number"
-          v-on:click="moveStep(step.number)"
-        >
+      <div class="step" v-for="(step, i) in steps" :key="i" :class="{
+        done: step.number < currentStep,
+        current: step.number === currentStep,
+      }">
+        <div class="step-number" :id="'step-' + step.number" v-on:click="moveStep(step.number)">
           <i v-if="step.number < currentStep" class="fa fa-check"></i>
           <span v-else>{{ step.number }}</span>
         </div>
@@ -25,17 +16,11 @@
     </div>
     <div class="container">
       <slot name="test"></slot>
-      <div
-        class="col-sm-12"
-        v-if="currentStep > 0 && currentStep <= steps.length"
-      >
+      <div class="col-sm-12" v-if="currentStep > 0 && currentStep <= steps.length">
         <button v-if="currentStep > 1" v-on:click="moveStep(currentStep - 1)">
           Back
         </button>
-        <button
-          v-if="currentStep < steps.length"
-          v-on:click="moveStep(currentStep + 1)"
-        >
+        <button v-if="currentStep < steps.length" v-on:click="moveStep(currentStep + 1)">
           Next
         </button>
         <button v-else-if="currentStep == steps.length" v-on:click="finalize">
@@ -43,11 +28,7 @@
         </button>
       </div>
       <div v-else>
-        <button
-          v-on:click="moveStep(1)"
-          class="btn btn-default btn-block"
-          role="button"
-        >
+        <button v-on:click="moveStep(1)" class="btn btn-default btn-block" role="button">
           Reset
         </button>
       </div>
@@ -154,11 +135,9 @@ export default {
   border-radius: 2em;
   background-size: 0% 0%;
   background-position: center;
-  background-image: radial-gradient(
-    circle at center,
-    #ffce00 50%,
-    transparent 50%
-  );
+  background-image: radial-gradient(circle at center,
+      #ffce00 50%,
+      transparent 50%);
   background-repeat: no-repeat;
   width: 25px;
   height: 25px;
