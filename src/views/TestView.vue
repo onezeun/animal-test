@@ -1,5 +1,5 @@
 <template>
   <div id="app">
-    <p>결과 페이지</p>
+    <p>테스트 페이지</p>
   </div>
 </template>
