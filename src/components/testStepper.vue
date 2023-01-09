@@ -83,17 +83,22 @@ export default {
     window.removeEventListener("resize", this.calculateBarPosition);
   },
   computed: {
-    // progress() {
-    //   if (this.currentStep > this.steps.length) {
-    //     return `width: 100%; display:block;`;
-    //   }
-    //   const first = document.getElementById('step-1');
-    //   const current = document.getElementById(`step-${this.currentStep}`);
-    //   if (first && current) {
-    //     const delta = current.getBoundingClientRect().right - first.getBoundingClientRect().right;
-    //     return `width: ${delta}px; display:block;`;
-    //   }
-    // }
+    progress() {
+      if (this.currentStep > this.steps.length) {
+        return `width: 100%; display:block;`;
+      } else {
+        const first = document.getElementById("step-1");
+        const current = document.getElementById(`step-${this.currentStep}`);
+        if (first && current) {
+          const delta =
+            current.getBoundingClientRect().right -
+            first.getBoundingClientRect().right;
+          return `width: ${delta}px; display:block;`;
+        } else {
+          return false;
+        }
+      }
+    },
   },
   methods: {
     moveStep(stepNumber) {
