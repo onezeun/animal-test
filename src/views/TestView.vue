@@ -1,33 +1,85 @@
 <template>
-  <div id="app">
-    <testStepper v-model="steps" />
-  </div>
+  <v-main>
+    <v-progress-linear v-model="progressValue" height="25" class="progress_bar" color="#5eb5e0">
+      <span> {{ count? Math.ceil(count) : 1 }} / 12</span>
+    </v-progress-linear>
+
+    <div class="qestions_title">
+      <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
+      <h2>질문 어쩌구 저쩌구 어쩌구~</h2>
+    </div>
+
+    <button class="result_btn btnA" @click=next()>답변 A 어쩌구 저쩌구 어쩌구~</button>
+    <button class="result_btn btnB">답변 B 어쩌구 저쩌구 어쩌구~</button>
+  </v-main>
 </template>
 
 <script>
-import testStepper from "../components/testStepper.vue";
+import router from '@/router';
 
 export default {
-  components: {
-    testStepper,
-  },
   data: () => ({
-    steps: [
-      { label: "step1" },
-      { label: "step2" },
-      { label: "step3" },
-      { label: "step4" },
-      { label: "step5" },
-      { label: "step6" },
-      { label: "step7" },
-      { label: "step8" },
-      { label: "step9" },
-      { label: "step10" },
-      { label: "step11" },
-      { label: "step12" },
-    ],
+    count: 1,
+    progressValue: 100 / 12,
+    E: 0,
+    I: 0,
+    S: 0,
+    N: 0,
+    T: 0,
+    F: 0,
+    J: 0,
+    P: 0,
   }),
-};
+  components: { router },
+  methods: {
+    next() {
+      var router = this.$router;
+      if (this.count < 12) {
+        this.count += 1;
+        this.progressValue = (100 / 12) * this.count;
+      } else if (this.count >= 12) {
+        router.push({
+          path:"/ResultView"
+        });
+      }
+    },
+  }
+}
 </script>
 
-<style></style>
+<style>
+.qestions_title h1 {
+  color: #5eb5e0;
+  margin-bottom: 10px;
+}
+
+.qestions_title {
+  width: 80%;
+  height: 200px;
+  margin: auto;
+  padding: 15% 0 40%;
+  text-align: center;
+}
+
+.result_btn {
+  margin: 50px auto;
+  display: block;
+  height: 15%;
+  width: 80%;
+  color: white;
+  background: #5eb5e0;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #0e5c83;
+}
+
+.result_btn:active {
+  background: #49a5d3;
+  box-shadow: 0 0px 0 #0e5c83;
+  transform: translateY(0.2em);
+}
+
+.result_btn:hover {
+  background: #49a5d3;
+}
+</style>
