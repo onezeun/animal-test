@@ -1,11 +1,11 @@
 <template>
   <v-main class="main_conponent">
-    <div v-if="result.mbti == 'ISFP'" class="result_wrap" v-for="result in resultList" :key="result.id">
-      <h1>나와 어울리는 동물은</h1>
+    <div v-if="result.mbti == value" class="result_wrap" v-for="result in resultList" :key="result.id">
+      <h1>나와 어울리는 반려동물은?</h1>
       <img src="../assets/images/hamster.gif" alt="main" class="mainImg" />
       <h2>{{ result.animal }}</h2>
       <div class="result_box">
-        <p>결과입니당</p>
+        <p>{{ mbti }}결과입니당</p>
       </div>
       <div class="soulmate">
         <div class="soulmate_good">
@@ -21,6 +21,10 @@
       </div>
     </div>
     <router-link to="/" class="goTest">다시 검사하기</router-link>
+    <div class="pitapet_link">
+      <p>반려동물을 기르고 계시다면? </p>
+      <router-link to="#" class="pitapet_btn">반려동물 자랑하러가기</router-link>
+    </div>
   </v-main>
 </template>
 
@@ -108,7 +112,7 @@ h2 {
   display: block;
   height: 50px;
   width: 70%;
-  margin: 50px auto 50px;
+  margin: 50px auto 0;
   box-shadow: 0 3px 0 #0e5c83;
 
   color: white;
@@ -126,4 +130,38 @@ h2 {
 .goTest:hover {
   background: #49a5d3;
 }
+
+.pitapet_link p {
+  font-size: 1.3rem;
+  margin: 30px 0 5px;
+  color: #505050;
+}
+
+.pitapet_btn{
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  line-height: 50px;
+  display: block;
+  height: 50px;
+  width: 70%;
+  margin: 0 auto 50px;
+  box-shadow: 0 3px 0 #ffc628;
+
+  color: #505050;
+  background: #FFEAAF;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+.pitapet_btn:active {
+  background: #ffdc7b;
+  box-shadow: 0 0px 0 #ffc628;
+  transform: translateY(0.2em);
+}
+
+.pitapet_btn:hover {
+  background: #ffdc7b;
+}
+
 </style>

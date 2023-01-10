@@ -14,6 +14,6 @@ export default new Router({
   routes: [
     { path: "/", component: MainView },
     { path: "/TestView", component: TestView },
-    { path: "/ResultView", component: ResultView },
+    { path: "/ResultView", component: ResultView, props:true },
   ],
 });

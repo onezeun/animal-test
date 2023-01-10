@@ -1,8 +1,8 @@
 <template>
   <v-main class="main_conponent">
-    <h1>테스트</h1>
+    <h1>나와 잘맞는 반려동물은?</h1>
     <img src="../assets/images/thinking-face.gif" alt="main" class="mainImg" />
-    <p>몰까?</p>
+    <p>재미로보는 MBTI 유형별<br /> 잘 맞는 반려동물 테스트</p>
     <router-link to="/TestView" class="goTest">테스트하러가기</router-link>
   </v-main>
 </template>
@@ -18,11 +18,11 @@
 h1 {
   border: 1px solid white;
   text-shadow: 0 3px 3px grey;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 p {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #8c8c8c;
 }
 
@@ -49,7 +49,7 @@ p {
   color: white;
   background: #5eb5e0;
   border-radius: 5px;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 .goTest:active {
   background: #49a5d3;
