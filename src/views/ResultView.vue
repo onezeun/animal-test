@@ -18,7 +18,7 @@
         <p>사자</p>
       </div>
     </div>
-    <router-link to="/MainView" class="goTest">다시 검사하기</router-link>
+    <router-link to="/" class="goTest">다시 검사하기</router-link>
   </v-main>
 </template>
 
