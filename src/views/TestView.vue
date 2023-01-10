@@ -4,14 +4,14 @@
       <span> {{ count? Math.ceil(count) : 1 }} / 12</span>
     </v-progress-linear>
 
-    <div v-if="count-1 == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
+    <div v-if="count - 1 == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
       <div class="qestions_title">
         <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
         <h2>{{ question.title }}</h2>
       </div>
 
-      <button class="result_btn btnA" @click=selectA()>{{ question.A }}</button>
-      <button class="result_btn btnB">{{ question.B }}</button>
+      <button class="result_btn btnA" @click=resultA()>{{ question.A }}</button>
+      <button class="result_btn btnB" @click=resultB()>{{ question.B }}</button>
     </div>
   </v-main>
 </template>
@@ -23,6 +23,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'Questions',
   data: () => ({
+    mbti: '',
     count: 1,
     progressValue: 100 / 12,
     E: 0,
@@ -38,7 +39,7 @@ export default {
   methods: {
     ...mapActions(["getQuestions"]),
 
-    selectA() {
+    plusNum() {
       var router = this.$router;
 
       if (this.count < 12) {
@@ -46,10 +47,77 @@ export default {
         this.progressValue = (100 / 12) * this.count;
       } else if (this.count >= 12) {
         router.push({
-          path: "/ResultView"
+          path: '/ResultView',
+          query: { value: this.mbti }
         });
+        console.log(this.mbti);
       }
     },
+
+    resultA() {
+      this.plusNum();
+      const result_type = this.questionsList[this.count - 2].type;
+
+      if (result_type == "EI") {
+        this.E++;
+        if (this.E == 2) {
+          this.mbti += "E";
+        }
+      };
+
+      if (result_type == "SN") {
+        this.S++;
+        if (this.S == 2) {
+          this.mbti += "S";
+        }
+      };
+
+      if (result_type == "TF") {
+        this.T++;
+        if (this.T == 2) {
+          this.mbti += "T";
+        }
+      };
+
+      if (result_type == "JP") {
+        this.J++;
+        if (this.J == 2) {
+          this.mbti += "J";
+        }
+      };
+    },
+    resultB() {
+      this.plusNum();
+      const result_type = this.questionsList[this.count - 2].type;
+
+      if (result_type == "EI") {
+        this.I++;
+        if (this.I == 2) {
+          this.mbti += "I";
+        }
+      };
+
+      if (result_type == "SN") {
+        this.N++;
+        if (this.N == 2) {
+          this.mbti += "N";
+        }
+      };
+
+      if (result_type == "TF") {
+        this.F++;
+        if (this.F == 2) {
+          this.mbti += "F";
+        }
+      };
+
+      if (result_type == "JP") {
+        this.P++;
+        if (this.P == 2) {
+          this.mbti += "P";
+        }
+      };
+    }
   },
   computed: mapGetters(["questionsList"]),
   created() {
@@ -73,6 +141,7 @@ export default {
 }
 
 .result_btn {
+  padding: 20px 10px;
   margin: 50px auto;
   display: block;
   height: 15%;
