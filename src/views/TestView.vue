@@ -4,20 +4,24 @@
       <span> {{ count? Math.ceil(count) : 1 }} / 12</span>
     </v-progress-linear>
 
-    <div class="qestions_title">
-      <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
-      <h2>질문 어쩌구 저쩌구 어쩌구~</h2>
-    </div>
+    <div v-if="count-1 == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
+      <div class="qestions_title">
+        <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
+        <h2>{{ question.title }}</h2>
+      </div>
 
-    <button class="result_btn btnA" @click=next()>답변 A 어쩌구 저쩌구 어쩌구~</button>
-    <button class="result_btn btnB">답변 B 어쩌구 저쩌구 어쩌구~</button>
+      <button class="result_btn btnA" @click=selectA()>{{ question.A }}</button>
+      <button class="result_btn btnB">{{ question.B }}</button>
+    </div>
   </v-main>
 </template>
 
 <script>
 import router from '@/router';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
+  name: 'Questions',
   data: () => ({
     count: 1,
     progressValue: 100 / 12,
@@ -32,17 +36,24 @@ export default {
   }),
   components: { router },
   methods: {
-    next() {
+    ...mapActions(["getQuestions"]),
+
+    selectA() {
       var router = this.$router;
+
       if (this.count < 12) {
         this.count += 1;
         this.progressValue = (100 / 12) * this.count;
       } else if (this.count >= 12) {
         router.push({
-          path:"/ResultView"
+          path: "/ResultView"
         });
       }
     },
+  },
+  computed: mapGetters(["questionsList"]),
+  created() {
+    this.getQuestions()
   }
 }
 </script>

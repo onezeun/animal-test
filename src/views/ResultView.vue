@@ -1,21 +1,23 @@
 <template>
   <v-main class="main_conponent">
-    <h1>나와 어울리는 동물은</h1>
-    <img src="../assets/images/hamster.gif" alt="main" class="mainImg" />
-    <h2>햄스터</h2>
-    <div class="result_box">
-      <p>결과입니당</p>
-    </div>
-    <div class="soulmate">
-      <div class="soulmate_good">
-        <h3>나와 잘 맞는 친구</h3>
-        <img src="../assets/images/cat.gif" />
-        <p>고양이</p>
+    <div v-if="result.mbti == 'ISFP'" class="result_wrap" v-for="result in resultList" :key="result.id">
+      <h1>나와 어울리는 동물은</h1>
+      <img src="../assets/images/hamster.gif" alt="main" class="mainImg" />
+      <h2>{{ result.animal }}</h2>
+      <div class="result_box">
+        <p>결과입니당</p>
       </div>
-      <div class="soulmate_bad">
-        <h3>나와 안 맞는 친구</h3>
-        <img src="../assets/images/lion.gif" />
-        <p>사자</p>
+      <div class="soulmate">
+        <div class="soulmate_good">
+          <h3>나와 잘 맞는 친구</h3>
+          <img src="../assets/images/cat.gif" />
+          <p>고양이</p>
+        </div>
+        <div class="soulmate_bad">
+          <h3>나와 안 맞는 친구</h3>
+          <img src="../assets/images/lion.gif" />
+          <p>사자</p>
+        </div>
       </div>
     </div>
     <router-link to="/" class="goTest">다시 검사하기</router-link>
@@ -23,7 +25,21 @@
 </template>
 
 
-<script></script>
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: 'Result',
+  methods: {
+    ...mapActions(["getResult"])
+  },
+  computed: mapGetters(["resultList"]),
+  created() {
+    this.getResult()
+  }
+}
+
+</script>
 
 <style scoped>
 .main_conponent {
@@ -61,13 +77,14 @@ h2 {
   margin: 40px auto;
   object-fit: contain;
 }
+
 .soulmate {
   margin: 2%;
   display: flex;
   justify-content: space-between;
 }
 
-.soulmate > div {
+.soulmate>div {
   border: 1px solid #ccc;
   width: 48%;
   padding: 15px 0;
@@ -78,7 +95,8 @@ h2 {
   max-height: 100px;
 }
 
-.soulmate p, .soulmate h3 {
+.soulmate p,
+.soulmate h3 {
   font-size: 1.3rem;
 }
 
@@ -98,6 +116,7 @@ h2 {
   border-radius: 5px;
   font-size: 1.5rem;
 }
+
 .goTest:active {
   background: #49a5d3;
   box-shadow: 0 0px 0 #0e5c83;
