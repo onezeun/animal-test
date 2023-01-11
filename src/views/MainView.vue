@@ -1,9 +1,9 @@
 <template>
   <v-main class="main_conponent">
-    <h1>나와 잘맞는 반려동물은?</h1>
+    <h1>나와 어울리는 동물은?</h1>
     <img src="../assets/images/thinking-face.gif" alt="main" class="mainImg" />
-    <p>재미로보는 MBTI 유형별<br /> 잘 맞는 반려동물 테스트</p>
-    <router-link to="/TestView" class="goTest">테스트하러가기</router-link>
+    <p>재미로보는 MBTI 유형별<br /> 어울리는 동물 테스트</p>
+    <router-link :to="{ name: 'test' }" class="goTest">테스트하러가기</router-link>
   </v-main>
 </template>
 

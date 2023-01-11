@@ -12,8 +12,8 @@ export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    { path: "/", component: MainView },
-    { path: "/TestView", component: TestView },
-    { path: "/ResultView", component: ResultView, props:true },
+    { path: "/", name:'main', component: MainView },
+    { path: "/TestView", name:'test', component: TestView, props:true },
+    { path: "/ResultView", name:'result', component: ResultView, props:true },
   ],
 });

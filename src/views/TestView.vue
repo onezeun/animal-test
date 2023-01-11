@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="test_content">
     <v-progress-linear v-model="progressValue" height="25" class="progress_bar" color="#5eb5e0">
       <span> {{ count? Math.ceil(count) : 1 }} / 12</span>
     </v-progress-linear>
@@ -46,11 +46,31 @@ export default {
         this.count += 1;
         this.progressValue = (100 / 12) * this.count;
       } else if (this.count >= 12) {
+        if (this.E == 2) {
+          this.mbti += "E";
+        } else {
+          this.mbti += "I";
+        }
+        if (this.S == 2) {
+          this.mbti += "S";
+        } else {
+          this.mbti += "N";
+        }
+        if (this.T == 2) {
+          this.mbti += "T";
+        } else {
+          this.mbti += "F";
+        }
+        if (this.J == 2) {
+          this.mbti += "J";
+        } else {
+          this.mbti += "P";
+        }
+
         router.push({
-          path: '/ResultView',
-          query: { value: this.mbti }
+          name: 'result',
+          params: { value: this.mbti }
         });
-        console.log(this.mbti);
       }
     },
 
@@ -60,30 +80,18 @@ export default {
 
       if (result_type == "EI") {
         this.E++;
-        if (this.E == 2) {
-          this.mbti += "E";
-        }
       };
 
       if (result_type == "SN") {
         this.S++;
-        if (this.S == 2) {
-          this.mbti += "S";
-        }
       };
 
       if (result_type == "TF") {
         this.T++;
-        if (this.T == 2) {
-          this.mbti += "T";
-        }
       };
 
       if (result_type == "JP") {
         this.J++;
-        if (this.J == 2) {
-          this.mbti += "J";
-        }
       };
     },
     resultB() {
@@ -92,30 +100,18 @@ export default {
 
       if (result_type == "EI") {
         this.I++;
-        if (this.I == 2) {
-          this.mbti += "I";
-        }
       };
 
       if (result_type == "SN") {
         this.N++;
-        if (this.N == 2) {
-          this.mbti += "N";
-        }
       };
 
       if (result_type == "TF") {
         this.F++;
-        if (this.F == 2) {
-          this.mbti += "F";
-        }
       };
 
       if (result_type == "JP") {
         this.P++;
-        if (this.P == 2) {
-          this.mbti += "P";
-        }
       };
     }
   },

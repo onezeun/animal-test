@@ -1,26 +1,30 @@
 <template>
-  <v-main class="main_conponent">
-    <div v-if="result.mbti == value" class="result_wrap" v-for="result in resultList" :key="result.id">
-      <h1>나와 어울리는 반려동물은?</h1>
-      <img src="../assets/images/hamster.gif" alt="main" class="mainImg" />
-      <h2>{{ result.animal }}</h2>
+  <v-main class="result_conponent">
+    <div v-if="result.mbti == $route.params.value" class="result_wrap" v-for="result in resultList" :key="result.id">
+      <h1>나와 어울리는 동물은 바로</h1>
+      <!-- 해당 경로를 import한다는 의미로 require를 사용 -->
+      <img :src="require(`../assets/images/${result.img}`)" alt="main" class="mainImg" />
+      <h2>{{ result.title + result.animal }}</h2>
       <div class="result_box">
-        <p>{{ mbti }}결과입니당</p>
+        <p>{{ result.content }}</p>
       </div>
       <div class="soulmate">
-        <div class="soulmate_good">
+        <div v-if="soulmate.mbti == result.soulmate" v-for="soulmate in resultList" :key="soulmate.id" class="soulmate_good">
           <h3>나와 잘 맞는 친구</h3>
-          <img src="../assets/images/cat.gif" />
-          <p>고양이</p>
+          <img :src="require(`../assets/images/${soulmate.img}`)" />
+          <p>{{ soulmate.title + soulmate.animal }}</p>
         </div>
-        <div class="soulmate_bad">
+        <div v-if="bad.mbti == result.bad" v-for="bad in resultList" :key="bad.id" class="soulmate_bad">
           <h3>나와 안 맞는 친구</h3>
-          <img src="../assets/images/lion.gif" />
-          <p>사자</p>
+          <img :src="require(`../assets/images/${bad.img}`)" />
+          <p>{{ bad.title + bad.animal }}</p>
         </div>
       </div>
     </div>
-    <router-link to="/" class="goTest">다시 검사하기</router-link>
+    <div class="btn_flex">
+      <router-link to="/" class="goTest">다시 검사하기</router-link>
+      <router-link to="/" class="goTest">카카오톡 공유하기</router-link>
+    </div>
     <div class="pitapet_link">
       <p>반려동물을 기르고 계시다면? </p>
       <router-link to="#" class="pitapet_btn">반려동물 자랑하러가기</router-link>
@@ -33,20 +37,20 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'Result',
+  name: 'result',
   methods: {
     ...mapActions(["getResult"])
   },
   computed: mapGetters(["resultList"]),
   created() {
-    this.getResult()
-  }
+    this.getResult();
+  },
 }
 
 </script>
 
 <style scoped>
-.main_conponent {
+.result_conponent {
   text-align: center;
   padding-top: 50px !important;
 }
@@ -104,6 +108,12 @@ h2 {
   font-size: 1.3rem;
 }
 
+.btn_flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 2%;
+}
+
 .goTest {
   text-decoration: none;
   text-align: center;
@@ -111,8 +121,7 @@ h2 {
   line-height: 50px;
   display: block;
   height: 50px;
-  width: 70%;
-  margin: 50px auto 0;
+  width: 48%;
   box-shadow: 0 3px 0 #0e5c83;
 
   color: white;
