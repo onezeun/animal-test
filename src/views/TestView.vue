@@ -1,13 +1,13 @@
 <template>
   <v-main class="test_content">
     <v-progress-linear v-model="progressValue" height="25" class="progress_bar" color="#5eb5e0">
-      <span> {{ count? Math.ceil(count) : 1 }} / 12</span>
+      <span> {{ progressNum ? Math.ceil(progressNum) : 1 }} / 12</span>
     </v-progress-linear>
 
     <v-scroll-x-reverse-transition mode="out-in">
-      <div v-if="count - 1 == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
+      <div v-if="count == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
         <div class="qestions_title">
-          <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
+          <h1>Q. {{ progressNum ? Math.ceil(progressNum) : 1 }}</h1>
           <h2>{{ question.title }}</h2>
         </div>
 
@@ -26,7 +26,8 @@ export default {
   name: 'Questions',
   data: () => ({
     mbti: '',
-    count: 1,
+    count: 0,
+    progressNum: 1,
     progressValue: 100 / 12,
     E: 0,
     I: 0,
@@ -44,10 +45,12 @@ export default {
     plusNum() {
       var router = this.$router;
 
-      if (this.count < 12) {
+      if (this.progressNum < 12) {
         this.count += 1;
-        this.progressValue = (100 / 12) * this.count;
-      } else if (this.count >= 12) {
+        this.progressNum +=1;
+        this.progressValue = (100 / 12) * this.progressNum;
+      } else if (this.progressNum >= 12) {
+        this.count += 1;
         if (this.E == 2) {
           this.mbti += "E";
         } else {
@@ -78,7 +81,7 @@ export default {
 
     resultA() {
       this.plusNum();
-      const result_type = this.questionsList[this.count - 2].type;
+      var result_type = this.questionsList[this.count - 1 ].type;
 
       if (result_type == "EI") {
         this.E++;
@@ -98,7 +101,7 @@ export default {
     },
     resultB() {
       this.plusNum();
-      const result_type = this.questionsList[this.count - 2].type;
+      const result_type = this.questionsList[this.count - 1].type;
 
       if (result_type == "EI") {
         this.I++;
