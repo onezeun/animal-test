@@ -4,15 +4,17 @@
       <span> {{ count? Math.ceil(count) : 1 }} / 12</span>
     </v-progress-linear>
 
-    <div v-if="count - 1 == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
-      <div class="qestions_title">
-        <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
-        <h2>{{ question.title }}</h2>
-      </div>
+    <v-scroll-x-reverse-transition mode="out-in">
+      <div v-if="count - 1 == question.id" class="questions_wrap" v-for="question in questionsList" :key="question.id">
+        <div class="qestions_title">
+          <h1>Q. {{ count? Math.ceil(count) : 1 }}</h1>
+          <h2>{{ question.title }}</h2>
+        </div>
 
-      <button class="result_btn btnA" @click=resultA()>{{ question.A }}</button>
-      <button class="result_btn btnB" @click=resultB()>{{ question.B }}</button>
-    </div>
+        <button class="result_btn btnA" @click=resultA()>{{ question.A }}</button>
+        <button class="result_btn btnB" @click=resultB()>{{ question.B }}</button>
+      </div>
+    </v-scroll-x-reverse-transition>
   </v-main>
 </template>
 
