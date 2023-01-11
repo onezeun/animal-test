@@ -94,7 +94,7 @@ h2 {
 }
 
 .result_box p {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 100;
 }
 
@@ -108,20 +108,21 @@ h2 {
 }
 
 .soulmate {
-  margin: 2%;
+  margin: 0 2%;
   display: flex;
   justify-content: space-between;
 }
 
 .soulmate>div {
   border: 1px solid #ccc;
-  width: 48%;
+  width: 49%;
   padding: 15px 0;
 }
 
 .soulmate img {
   max-width: 100px;
   max-height: 100px;
+  margin: 5% 0;
 }
 
 .soulmate p,
@@ -129,10 +130,14 @@ h2 {
   font-size: 1.3rem;
 }
 
+.soulmate p {
+  margin: 0;
+}
+
 .btn_flex {
   display: flex;
   justify-content: space-between;
-  margin: 50px 2%;
+  margin: 20px 2% 50px;
 }
 
 .goTest {
@@ -142,7 +147,7 @@ h2 {
   line-height: 50px;
   display: block;
   height: 50px;
-  width: 48%;
+  width: 49%;
   box-shadow: 0 3px 0 #0e5c83;
 
   color: white;
@@ -164,7 +169,7 @@ h2 {
   line-height: 50px;
   display: block;
   height: 50px;
-  width: 48%;
+  width: 49%;
   box-shadow: 0 3px 0 #b1a005;
 
   color: #391d1d;
