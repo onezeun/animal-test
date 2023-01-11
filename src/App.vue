@@ -24,7 +24,7 @@ export default {
   font-style: normal;
 }
 html {
-  font-size: 10px;
+  font-size: 16px;
 }
 #app {
   font-family: "KOTRAHOPE";
