@@ -45,7 +45,10 @@ export default {
       window.Kakao.Share.sendCustom({
         templateId: 88462,
         // 카카오톡이 설치 되지 않았을때 마켓으로 이동
-        installTalk: true
+        installTalk: true,
+        templateArgs: {
+          value:this.$route.query.value,
+        },
       });
     },
   },
