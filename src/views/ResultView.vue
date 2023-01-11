@@ -4,7 +4,7 @@
       <h1>나와 어울리는 동물은 바로</h1>
       <!-- 해당 경로를 import한다는 의미로 require를 사용 -->
       <img :src="require(`../assets/images/${result.img}`)" alt="main" class="mainImg" />
-      <h2>{{ result.title + result.animal }}</h2>
+      <p class="result_title"><span>{{ result.title }}</span><br />{{ result.animal }}</p>
       <div class="result_box">
         <p>{{ result.content }}</p>
       </div>
@@ -13,12 +13,12 @@
           class="soulmate_good">
           <h3>나와 잘 맞는 친구</h3>
           <img :src="require(`../assets/images/${soulmate.img}`)" />
-          <p>{{ soulmate.title + soulmate.animal }}</p>
+          <p>{{ soulmate.title }}&nbsp;{{ soulmate.animal }}</p>
         </div>
         <div v-if="bad.mbti == result.bad" v-for="bad in resultList" :key="bad.id" class="soulmate_bad">
           <h3>나와 안 맞는 친구</h3>
           <img :src="require(`../assets/images/${bad.img}`)" />
-          <p>{{ bad.title + bad.animal }}</p>
+          <p>{{ bad.title }}&nbsp;{{ bad.animal }}</p>
         </div>
       </div>
     </div>
@@ -72,6 +72,16 @@ h1 {
 h2 {
   color: #5eb5e0;
   font-size: 2.2rem;
+}
+
+.result_title {
+  color: #5eb5e0;
+  font-size: 2.2rem;
+}
+
+.result_title span {
+  color: black;
+  font-size: 1.7rem;
 }
 
 .result_box {
