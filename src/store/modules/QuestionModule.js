@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
 	async getQuestions({commit}){
-		const response = await axios.get("http://localhost:3000/question");
+		const response = await axios.get("https://my-json-server.typicode.com/onezeun/animal-test/question");
 		commit("setQuestions", response.data)
 	}
 };
