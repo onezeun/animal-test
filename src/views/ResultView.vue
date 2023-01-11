@@ -1,6 +1,6 @@
 <template>
   <v-main class="result_conponent">
-    <div v-if="result.mbti == $route.params.value" class="result_wrap" v-for="result in resultList" :key="result.id">
+    <div v-if="result.mbti == $route.query.value" class="result_wrap" v-for="result in resultList" :key="result.id">
       <h1>나와 어울리는 동물은 바로</h1>
       <!-- 해당 경로를 import한다는 의미로 require를 사용 -->
       <img :src="require(`../assets/images/${result.img}`)" alt="main" class="mainImg" />

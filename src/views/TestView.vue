@@ -69,7 +69,7 @@ export default {
 
         router.push({
           name: 'result',
-          params: { value: this.mbti }
+          query: { value: this.mbti }
         });
       }
     },
