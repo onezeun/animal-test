@@ -157,7 +157,9 @@ export default {
   transform: translateY(0.2em);
 }
 
-.result_btn:hover {
-  background: #49a5d3;
+@media screen and (min-width: 769px) {
+  .result_btn:hover {
+    background: #49a5d3;
+  }
 }
 </style>

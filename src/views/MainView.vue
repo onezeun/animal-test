@@ -51,13 +51,17 @@ p {
   border-radius: 5px;
   font-size: 1.8rem;
 }
+
 .goTest:active {
   background: #49a5d3;
   box-shadow: 0 0px 0 #0e5c83;
   transform: translateY(0.2em);
 }
 
-.goTest:hover {
-  background: #49a5d3;
+
+@media screen and (min-width: 769px) {
+  .goTest:hover {
+    background: #49a5d3;
+  }
 }
 </style>

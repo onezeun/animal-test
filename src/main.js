@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false;
 
-const KAKAKO_API_KEY = 'api';
+const KAKAKO_API_KEY = '314f25c5c54567722bd749e73589765e';
 window.Kakao.init(KAKAKO_API_KEY);
 
 new Vue({

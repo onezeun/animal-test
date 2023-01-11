@@ -144,10 +144,6 @@ h2 {
   transform: translateY(0.2em);
 }
 
-.goTest:hover {
-  background: #49a5d3;
-}
-
 .goKakao {
   text-decoration: none;
   text-align: center;
@@ -166,14 +162,9 @@ h2 {
 
 .goKakao:active {
   background: #f3dc00;
-  box-shadow: 0 0px 0 #b1a005;
+  box-shadow: 0 0px 0 #0e5c83;
   transform: translateY(0.2em);
 }
-
-.goKakao:hover {
-  background: #f3dc00;
-}
-
 
 .pitapet_link p {
   font-size: 1.3rem;
@@ -205,7 +196,18 @@ h2 {
   transform: translateY(0.2em);
 }
 
-.pitapet_btn:hover {
-  background: #ffdc7b;
+
+@media screen and (min-width: 769px) {
+  .goTest:hover {
+    background: #49a5d3;
+  }
+
+  .pitapet_btn:hover {
+    background: #ffdc7b;
+  }
+
+  .goKakao:hover {
+    background: #f3dc00;
+  }
 }
 </style>

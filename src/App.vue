@@ -30,5 +30,6 @@ html {
   font-family: "KOTRAHOPE";
   max-width: 760px;
   margin: auto;
+  height: 100vh;
 }
 </style>
