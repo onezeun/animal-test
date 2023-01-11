@@ -51,22 +51,22 @@ export default {
         this.progressValue = (100 / 12) * this.progressNum;
       } else if (this.progressNum >= 12) {
         this.count += 1;
-        if (this.E == 2) {
+        if (this.E >= 2) {
           this.mbti += "E";
         } else {
           this.mbti += "I";
         }
-        if (this.S == 2) {
+        if (this.S >= 2) {
           this.mbti += "S";
         } else {
           this.mbti += "N";
         }
-        if (this.T == 2) {
+        if (this.T >= 2) {
           this.mbti += "T";
         } else {
           this.mbti += "F";
         }
-        if (this.J == 2) {
+        if (this.J >= 2) {
           this.mbti += "J";
         } else {
           this.mbti += "P";
