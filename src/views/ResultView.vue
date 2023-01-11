@@ -9,7 +9,8 @@
         <p>{{ result.content }}</p>
       </div>
       <div class="soulmate">
-        <div v-if="soulmate.mbti == result.soulmate" v-for="soulmate in resultList" :key="soulmate.id" class="soulmate_good">
+        <div v-if="soulmate.mbti == result.soulmate" v-for="soulmate in resultList" :key="soulmate.id"
+          class="soulmate_good">
           <h3>나와 잘 맞는 친구</h3>
           <img :src="require(`../assets/images/${soulmate.img}`)" />
           <p>{{ soulmate.title + soulmate.animal }}</p>
@@ -23,7 +24,7 @@
     </div>
     <div class="btn_flex">
       <router-link to="/" class="goTest">다시 검사하기</router-link>
-      <router-link to="/" class="goTest">카카오톡 공유하기</router-link>
+      <a class="goKakao" @click="kakaoShare">카카오톡 공유하기</a>
     </div>
     <div class="pitapet_link">
       <p>반려동물을 기르고 계시다면? </p>
@@ -39,7 +40,14 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'result',
   methods: {
-    ...mapActions(["getResult"])
+    ...mapActions(["getResult"]),
+    kakaoShare() {
+      window.Kakao.Share.sendCustom({
+        templateId: 88462,
+        // 카카오톡이 설치 되지 않았을때 마켓으로 이동
+        installTalk: true
+      });
+    },
   },
   computed: mapGetters(["resultList"]),
   created() {
@@ -140,13 +148,40 @@ h2 {
   background: #49a5d3;
 }
 
+.goKakao {
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  line-height: 50px;
+  display: block;
+  height: 50px;
+  width: 48%;
+  box-shadow: 0 3px 0 #b1a005;
+
+  color: #391d1d;
+  background: #ffe600;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.goKakao:active {
+  background: #f3dc00;
+  box-shadow: 0 0px 0 #b1a005;
+  transform: translateY(0.2em);
+}
+
+.goKakao:hover {
+  background: #f3dc00;
+}
+
+
 .pitapet_link p {
   font-size: 1.3rem;
   margin: 30px 0 5px;
   color: #505050;
 }
 
-.pitapet_btn{
+.pitapet_btn {
   text-decoration: none;
   text-align: center;
   font-weight: bold;
@@ -163,6 +198,7 @@ h2 {
   font-size: 1.5rem;
   font-weight: 100;
 }
+
 .pitapet_btn:active {
   background: #ffdc7b;
   box-shadow: 0 0px 0 #ffc628;
@@ -172,5 +208,4 @@ h2 {
 .pitapet_btn:hover {
   background: #ffdc7b;
 }
-
 </style>
